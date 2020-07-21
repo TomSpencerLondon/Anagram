@@ -1,5 +1,6 @@
 package com.codurance;
 
+import static com.codurance.Anagram.candidateWords;
 import static com.codurance.Anagram.containsAllChars;
 import static com.codurance.Anagram.getWords;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,5 +25,11 @@ public class AnagramShould {
     String container = "documenting";
 
     assertTrue(containsAllChars(container, containee));
+  }
+
+  @Test
+  void returns_list_of_words_that_contain_only_the_letters_of_given_word() {
+    List<String> words = getWords();
+    System.out.println(candidateWords("documenting").toString());
   }
 }

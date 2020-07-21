@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Anagram {
 
@@ -28,6 +29,11 @@ public class Anagram {
 
     return words;
   }
+
+  public static List<String> candidateWords(String container){
+    return getWords().stream().filter(w -> containsAllChars(container, w)).collect(Collectors.toList());
+  }
+
 
   public static boolean containsAllChars(String container, String containee) {
     return stringToCharacterSet(container).containsAll(stringToCharacterSet(containee));
