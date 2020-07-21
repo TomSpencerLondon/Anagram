@@ -1,31 +1,44 @@
 package com.codurance;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Anagram {
 
-  public static void main(String[] args) throws FileNotFoundException {
-    getWords();
+  public static void main(String[] args) {
+    System.out.println(getWords().toString());
   }
 
-  public static List<String> getWords() throws FileNotFoundException {
+  public static List<String> getWords() {
     ClassLoader classloader = Thread.currentThread().getContextClassLoader();
     InputStream is = classloader.getResourceAsStream("wordlist.txt");
+    assert is != null;
     Scanner s = new Scanner(is);
 
     ArrayList<String> words = new ArrayList<>();
 
-    while(s.hasNext()){
+    while (s.hasNext()) {
       words.add(s.next());
     }
 
     return words;
   }
 
+  public static boolean containsAllChars(String container, String containee) {
+    return stringToCharacterSet(container).containsAll(stringToCharacterSet(containee));
+  }
+
+  private static Set<Character> stringToCharacterSet(String s) {
+    Set<Character> set = new HashSet<>();
+    for (char c : s.toCharArray()){
+      set.add(c);
+    }
+    return set;
+  }
 
 }
